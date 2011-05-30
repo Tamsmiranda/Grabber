@@ -12,3 +12,4 @@
 2011-05-30 14:35:41 Debug: Notice (8): Undefined variable: channelId in [C:\wamp\www\grabber\app\controllers\parse_controller.php, line 36]
 2011-05-30 14:40:39 Debug: Notice (8): Undefined variable: channelId in [C:\wamp\www\grabber\app\controllers\parse_controller.php, line 36]
 2011-05-30 14:48:44 Debug: Notice (8): Undefined variable: channelId in [C:\wamp\www\grabber\app\controllers\parse_controller.php, line 36]
+2011-05-30 15:01:02 Debug: Notice (8): Undefined variable: channelId in [C:\wamp\www\grabber\app\controllers\parse_controller.php, line 36]
