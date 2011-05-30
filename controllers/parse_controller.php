@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 App::Import('Core','File');
 App::Import('Core','Zip');
@@ -9,7 +9,7 @@ class ParseController extends AppController {
 
 	var $name = 'Parse';
 	
-	var $uses = array('Channel');
+	var $uses = array('Channel', 'Programme');
 	
 	function index() {
 		debug($this->params);
@@ -29,7 +29,7 @@ class ParseController extends AppController {
 				//$xml = new Xml(WWW_ROOT . '/tmp/xmltv_rj.xml');
 				$xmltv = new domDocument;
 				@$xmltv->loadXML(file_get_contents(WWW_ROOT . '/tmp/xmltv_rj.xml'));
-				$xmltv->preserveWhiteSpace = false;
+				$xmltv->preserveWhiteSpace = false;/*
 				$channels = $xmltv->getElementsByTagName('channel');
 				foreach ($channels as $channel) {
 					$channelAcronym = strtoupper(mb_convert_encoding($channel->getAttribute('id'),'auto', 'UTF-8'));
@@ -60,12 +60,18 @@ class ParseController extends AppController {
 							//$this->data['Channel']['name'] = Inflector::humanize(mb_convert_encoding($displayName->nodeValue, 'auto', 'UTF-8'));
 							//$this->Channel->locale = strtolower(mb_convert_encoding($displayName->getAttribute('lang')));
 						}	
-					} else {
 					}
-					$displayNames = $channel->getElementsByTagName("display-name");
-					foreach ($displayNames as $displayName) {
-						echo $displayName->nodeValue.'&ndsp;';
-						echo $displayName->getAttribute('lang').'<br />';
+				}*/
+				echo "--------------------";
+				$programmes = $xmltv->getElementsByTagName('programme');
+				foreach ($programmes as $programme) {
+					$programmeTitles = $programme->getElementsByTagName('title');
+					foreach ($programmeTitles as $displayTitle) {
+						echo mb_convert_encoding(Inflector::slug($displayTitle->nodeValue).'----------','UTF-8','auto');exit;
+						//$programmeAlias  = Inflector::variable(Inflector::slug(Inflector::humanize(strtolower(mb_convert_encoding($displayTitle->nodeValue, 'auto', 'UTF-8')))));
+						$programmeAlias = Inflector::variable(Inflector::slug(mb_strtolower(mb_convert_encoding($displayTitle->nodeValue, 'auto', 'UTF-8'))));
+						$programmeTitle = Inflector::humanize(strtolower(mb_convert_encoding($displayTitle->nodeValue, 'auto', 'UTF-8')));
+						echo $programmeTitle.' : '.$programmeAlias.'<br />';
 					}
 				}
 				exit;

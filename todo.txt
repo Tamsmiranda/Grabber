@@ -1,0 +1,2 @@
+Todo:
+Programme Alias: Inflector::Slug don't function.
